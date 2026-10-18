@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #020617;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
