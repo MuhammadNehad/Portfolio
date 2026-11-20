@@ -1,0 +1,116 @@
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <a class="bar__brand" href="#top">Muhammad Nehad</a>
+  <nav aria-label="Primary">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <div class="hero__text">
+      <p class="hero__where">{{ profile.location }}</p>
+      <h1>{{ profile.name }}</h1>
+      <p class="hero__role">{{ profile.role }}</p>
+      <p class="hero__summary">{{ profile.summary }}</p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="#projects">See my projects</a>
+        <a class="btn" [href]="'mailto:' + profile.email">Send an email</a>
+      </div>
+    </div>
+
+    <figure class="req" aria-label="Profile shown as an API response">
+      <div class="req__line"><span class="req__verb">GET</span> /api/developers/muhammad-nehad</div>
+      <div class="req__status"><span class="req__dot"></span>200 OK</div>
+      <pre>{{ '{' }}
+  "role": "Full-stack developer",
+  "stack": ["Angular", "ASP.NET Core"],
+  "data": ["SQL Server", "EF Core"],
+  "since": 2020,
+  "location": "Cairo, Egypt",
+  "available": true
+{{ '}' }}</pre>
+    </figure>
+  </section>
+
+  <section class="wrap stats" aria-label="At a glance">
+    @for (s of stats; track s.label) {
+      <div><strong>{{ s.value }}</strong><span>{{ s.label }}</span></div>
+    }
+  </section>
+
+  <section class="wrap block" id="experience">
+    <h2>Experience</h2>
+    <ol class="timeline">
+      @for (e of experience; track e.company) {
+        <li>
+          <p class="timeline__period">{{ e.period }}</p>
+          <h3>{{ e.role }}, {{ e.company }}</h3>
+          <ul>
+            @for (p of e.points; track p) { <li>{{ p }}</li> }
+          </ul>
+        </li>
+      }
+    </ol>
+  </section>
+
+  <section class="wrap block" id="projects">
+    <h2>Projects</h2>
+    @for (p of projects; track p.name) {
+      <article class="project">
+        <p class="project__year">{{ p.year }}</p>
+        <div>
+          <h3>{{ p.name }}</h3>
+          <p class="project__client">{{ p.client }}</p>
+          <p>{{ p.text }}</p>
+          <ul class="tags">
+            @for (t of p.tags; track t) { <li>{{ t }}</li> }
+          </ul>
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="wrap block" id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      @for (g of skills; track g.group) {
+        <div>
+          <h3>{{ g.group }}</h3>
+          <ul>
+            @for (i of g.items; track i) { <li>{{ i }}</li> }
+          </ul>
+        </div>
+      }
+    </div>
+    <div class="edu">
+      <div>
+        <h3>Education</h3>
+        <p>{{ education.degree }}</p>
+        <p class="muted">{{ education.school }}, {{ education.period }}</p>
+      </div>
+      <div>
+        <h3>Languages</h3>
+        @for (l of languages; track l.name) {
+          <p>{{ l.name }} <span class="muted">({{ l.level }})</span></p>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block contact" id="contact">
+    <h2>Let’s work together</h2>
+    <p>I’m open to full-stack Angular and .NET work. The quickest way to reach me is email.</p>
+    <p><a class="big" [href]="'mailto:' + profile.email">{{ profile.email }}</a></p>
+    <p class="contact__links">
+      <a [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a [href]="'tel:' + profile.phone.replaceAll(' ', '')">{{ profile.phone }}</a>
+    </p>
+  </section>
+</main>
+
+<footer class="wrap foot">© {{ year }} {{ profile.name }}</footer>

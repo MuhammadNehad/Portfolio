@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { PortfolioPageComponent } from './components/portfolio-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [PortfolioPageComponent],
+  imports: [],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
